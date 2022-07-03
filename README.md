@@ -1,5 +1,5 @@
 
-## react-env-mini-js
+## atomic-design-env
 ---
 
 <br>
@@ -12,6 +12,10 @@ https://github.com/anakin1359/react-env-mini-js.git
 package.json loading
 ```
 yarn install
+```
+
+```
+yarn add styled-components react-router-dom@5
 ```
 
 project start
