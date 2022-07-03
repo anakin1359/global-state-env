@@ -20,5 +20,5 @@ yarn add styled-components react-router-dom@5
 
 project start
 ```
-npm start
+yarn start
 ```
