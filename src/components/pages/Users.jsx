@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { useLocation } from "react-router-dom";
 import { SearchInput } from "../molecules/SearchInput";
 import { UserCard } from "../organisms/user/UserCard";
 
@@ -17,15 +18,19 @@ const users = [...Array(10).keys()].map(((val) => {
 }));
 
 export const Users = () => {
+    const { state } = useLocation();
+    const isAdmin = state ? state.isAdmin : false; // stateが存在する場合はisAdmin(true), 存在しない場合はfalse
+
     return (
         <StyleContainer>
             <h2>Users List</h2>
             <SearchInput />
             <StyleUserArea>
-                {users.map((user) => (
+                {users.map((obj) => (
                     <UserCard
-                    keys={user.id}
-                    user={user}
+                    keys={obj.id}
+                    user={obj}
+                    isAdmin={isAdmin}
                     />
                 ))}
             </StyleUserArea>
