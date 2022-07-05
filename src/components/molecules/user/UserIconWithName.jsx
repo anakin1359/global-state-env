@@ -1,11 +1,19 @@
 import styled from "styled-components";
-import React, { memo, useContext } from "react";
-import { UserContext } from "../../../providers/UserProvider";
+import React, {
+    memo,
+    // useContext,   // useStateで管理する場合はこちらを使用
+} from "react";
+// import { UserContext } from "../../../providers/UserProvider";
+import { useRecoilValue } from "recoil";              // 値の参照のみ行う(変更は行わない)
+import { userState } from "../../../store/userState"; // recoilでstate管理
 
 export const UserIconWithName = memo((props) => {
     console.log("[DEBUG] UserIconWithName: ");    // memoを使用しているためpropsに変更がない限り更新されない
     const { image, name } = props;
-    const { userInfo } = useContext(UserContext); // userのcontextを引数に渡す
+
+    // const { userInfo } = useContext(UserContext); // userのcontextを引数に渡す(useStateで管理する場合はこちらを使用)
+    const userInfo = useRecoilValue(userState);       // recoilでstate管理
+
     const isAdmin = userInfo ? userInfo.isAdmin : false;
     console.log("What's isAdmin bool?: ", isAdmin);
 

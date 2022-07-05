@@ -1,13 +1,16 @@
 import styled from "styled-components";
-import { useContext } from "react";
+// import { useContext } from "react";                              // useStateで管理する場合はこちらを使用
+// import { UserContext } from "../../providers/UserProvider";      // useStateで管理する場合はこちらを使用
+import { useSetRecoilState } from "recoil"                          // 値の更新のみ行う(参照はしない)
 import { useHistory } from "react-router-dom";
 import { SecondaryButton } from "../atoms/button/SecondaryButton";
-import { UserContext } from "../../providers/UserProvider";
+import { userState } from "../../store/userState";                  // recoilでstate管理
 
 export const Top = () => {
 
     const history = useHistory();
-    const { setUserInfo } = useContext(UserContext);
+    // const { setUserInfo } = useContext(UserContext);  // useStateで管理する場合はこちらを使用
+    const setUserInfo = useSetRecoilState(userState);    // recoilでstate管理
 
     // 管理者ボタンが押された時に「setUserInfo」でグローバル変数「userInfo」の値を更新
     const onClickAdmin = () => {

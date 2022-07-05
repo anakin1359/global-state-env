@@ -1,9 +1,11 @@
-import { useContext } from "react";
 import styled from "styled-components";
-import { UserContext } from "../../providers/UserProvider";
+// import { useContext } from "react";                              // useStateで管理する場合はこちらを使用
+// import { UserContext } from "../../providers/UserProvider";      // useStateで管理する場合はこちらを使用
 import { SecondaryButton } from "../atoms/button/SecondaryButton";
 import { SearchInput } from "../molecules/SearchInput";
 import { UserCard } from "../organisms/user/UserCard";
+import { useRecoilState } from "recoil";
+import { userState } from "../../store/userState";                  // recoilでstate管理
 
 const users = [...Array(10).keys()].map(((val) => {
     return {
@@ -20,7 +22,8 @@ const users = [...Array(10).keys()].map(((val) => {
 }));
 
 export const Users = () => {
-    const { userInfo, setUserInfo } = useContext(UserContext);
+    // const { userInfo, setUserInfo } = useContext(UserContext); // useStateで管理する場合はこちらを使用
+    const [userInfo, setUserInfo] = useRecoilState(userState)     // recoilでstate管理
 
     // isAdmin(bool)の反転処理
     const onClickSwitch = () => setUserInfo({ isAdmin: !userInfo.isAdmin });
