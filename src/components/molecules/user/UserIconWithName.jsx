@@ -1,7 +1,12 @@
 import styled from "styled-components";
+import React, { useContext } from "react";
+import { UserContext } from "../../../providers/UserProvider";
 
 export const UserIconWithName = (props) => {
     const { image, name, isAdmin } = props;
+    const context = useContext(UserContext); // userのcontextを引数に渡す
+    console.log("context: ", context);
+
     return (
         <StyleContainer>
             <StyleImage
