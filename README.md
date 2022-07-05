@@ -15,7 +15,7 @@ yarn install
 ```
 
 ```
-yarn add styled-components react-router-dom@5
+yarn add styled-components react-router-dom@5 recoil
 ```
 
 project start
