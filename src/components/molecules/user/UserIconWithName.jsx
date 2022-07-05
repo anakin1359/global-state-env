@@ -1,8 +1,9 @@
 import styled from "styled-components";
-import React, { useContext } from "react";
+import React, { memo, useContext } from "react";
 import { UserContext } from "../../../providers/UserProvider";
 
-export const UserIconWithName = (props) => {
+export const UserIconWithName = memo((props) => {
+    console.log("[DEBUG] UserIconWithName: ");    // memoを使用しているためpropsに変更がない限り更新されない
     const { image, name } = props;
     const { userInfo } = useContext(UserContext); // userのcontextを引数に渡す
     const isAdmin = userInfo ? userInfo.isAdmin : false;
@@ -21,7 +22,7 @@ export const UserIconWithName = (props) => {
             {isAdmin && <StyleEdit>編集する</StyleEdit>}
         </StyleContainer>
     );
-};
+});
 
 const StyleContainer = styled.div`
     text-align: center;

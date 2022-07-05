@@ -1,9 +1,12 @@
+import { memo } from "react";
 import styled from "styled-components"
 import { Card } from "../../atoms/card/Card";
 import { UserIconWithName } from "../../molecules/user/UserIconWithName";
 
-export const UserCard = (props) => {
+export const UserCard = memo((props) => {
+    console.log("[DEBUG] UserCard: "); // memoを使用しているためpropsに変更がない限り更新されない
     const { user } = props;
+
     return (
         <Card>
             <UserIconWithName
@@ -26,7 +29,7 @@ export const UserCard = (props) => {
             </StyleDL>
         </Card>
     );
-};
+});
 
 const StyleDL = styled.dl`
     text-align: left;

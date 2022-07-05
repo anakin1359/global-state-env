@@ -1,4 +1,7 @@
+import { useContext } from "react";
 import styled from "styled-components";
+import { UserContext } from "../../providers/UserProvider";
+import { SecondaryButton } from "../atoms/button/SecondaryButton";
 import { SearchInput } from "../molecules/SearchInput";
 import { UserCard } from "../organisms/user/UserCard";
 
@@ -17,11 +20,22 @@ const users = [...Array(10).keys()].map(((val) => {
 }));
 
 export const Users = () => {
+    const { userInfo, setUserInfo } = useContext(UserContext);
+
+    // isAdmin(bool)の反転処理
+    const onClickSwitch = () => setUserInfo({ isAdmin: !userInfo.isAdmin });
 
     return (
         <StyleContainer>
             <h2>Users List</h2>
             <SearchInput />
+            <br />
+            <p>このボタンを押すとuserInfoのisAdminフラグを切り替えることができる</p>
+            <SecondaryButton
+                onClick={onClickSwitch}
+            >
+                切り替え
+            </SecondaryButton>
             <StyleUserArea>
                 {users.map((obj) => (
                     <UserCard
